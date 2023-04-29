@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://1d6ldisl7txy"]
+
+[ext_resource type="Script" path="res://Elements3d/planet.gd" id="1_osfh2"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_e83qw"]
+radius = 6.0
+height = 12.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_71rid"]
+radius = 6.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_0ao1o"]
+radius = 15.0
+
+[node name="Planet" type="StaticBody3D"]
+script = ExtResource("1_osfh2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_e83qw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_71rid")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_0ao1o")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_Area_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_Area_body_exited"]

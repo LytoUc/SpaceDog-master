@@ -1,0 +1,63 @@
+[gd_scene load_steps=7 format=3 uid="uid://dtdcdlagab8dj"]
+
+[ext_resource type="Script" path="res://Scripts/Coleccionables/coinGold.gd" id="1_hrsqk"]
+[ext_resource type="Texture2D" uid="uid://dagy3pshvak0g" path="res://assets/Objects/coin_gold.png" id="2_ob4k8"]
+
+[sub_resource type="Animation" id="Animation_klrjy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_s2qq6"]
+resource_name = "coin_gold"
+length = 0.8
+loop_mode = 1
+step = 0.06
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 2, 3, 4, 5, 6, 7, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lvlw2"]
+_data = {
+"RESET": SubResource("Animation_klrjy"),
+"coin_gold": SubResource("Animation_s2qq6")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b88po"]
+
+[node name="coinGold" type="Area2D"]
+script = ExtResource("1_hrsqk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ob4k8")
+hframes = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "coin_gold"
+libraries = {
+"": SubResource("AnimationLibrary_lvlw2")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_b88po")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

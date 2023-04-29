@@ -1,0 +1,153 @@
+[gd_scene load_steps=20 format=3 uid="uid://bpo816wsd0wfn"]
+
+[ext_resource type="Texture2D" uid="uid://6eodm51dam7i" path="res://assets/Laika in Levels/idle-Laika.png" id="1_3ryy2"]
+[ext_resource type="Script" path="res://Player/player2d.gd" id="1_o54yf"]
+[ext_resource type="Texture2D" uid="uid://kb8cksuouc8q" path="res://assets/Laika in Levels/walking-Laika.png" id="2_2hpk6"]
+[ext_resource type="Texture2D" uid="uid://ck7mnedstsbue" path="res://assets/Laika in Levels/fall-Laiika.png" id="2_26apd"]
+[ext_resource type="Texture2D" uid="uid://dlrtpcfqxup3u" path="res://assets/Laika in Levels/Jumping-Laika.png" id="2_iq8bg"]
+[ext_resource type="Script" path="res://Scripts/CamaraPLevels/CameraLava.gd" id="6_455w8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kc4pd"]
+atlas = ExtResource("1_3ryy2")
+region = Rect2(0, 0, 40, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d0g0e"]
+atlas = ExtResource("1_3ryy2")
+region = Rect2(40, 0, 40, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n1jxx"]
+atlas = ExtResource("1_3ryy2")
+region = Rect2(80, 0, 40, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_os35r"]
+atlas = ExtResource("1_3ryy2")
+region = Rect2(120, 0, 40, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cdgf1"]
+atlas = ExtResource("1_3ryy2")
+region = Rect2(160, 0, 40, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3pvmf"]
+atlas = ExtResource("2_2hpk6")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lvlin"]
+atlas = ExtResource("2_2hpk6")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lr18d"]
+atlas = ExtResource("2_2hpk6")
+region = Rect2(96, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ep86"]
+atlas = ExtResource("2_2hpk6")
+region = Rect2(144, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2os3q"]
+atlas = ExtResource("2_2hpk6")
+region = Rect2(192, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y2qsd"]
+atlas = ExtResource("2_2hpk6")
+region = Rect2(240, 0, 48, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pssm1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_26apd")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kc4pd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d0g0e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n1jxx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_os35r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cdgf1")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_iq8bg")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3pvmf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lvlin")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lr18d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ep86")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2os3q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y2qsd")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 8.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vh3et"]
+radius = 7.99956
+height = 19.9989
+
+[node name="Player" type="Node2D"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+script = ExtResource("1_o54yf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_pssm1")
+animation = &"walk"
+autoplay = "idle"
+frame_progress = 0.174121
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(-3, 7)
+rotation = -1.58127
+shape = SubResource("CapsuleShape2D_vh3et")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+offset = Vector2(0, -12)
+zoom = Vector2(4, 4)
+script = ExtResource("6_455w8")
+
+[node name="PlayerGUI" type="CanvasLayer" parent="Player"]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Player/PlayerGUI"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="coinsLabel2" type="Label" parent="Player/PlayerGUI/HBoxContainer"]
+layout_mode = 2
+text = "Monedas :  "
+
+[node name="coinsLabel" type="Label" parent="Player/PlayerGUI/HBoxContainer"]
+layout_mode = 2

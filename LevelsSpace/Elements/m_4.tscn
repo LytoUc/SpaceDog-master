@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://lkckvgis0usd"]
+
+[ext_resource type="Texture2D" uid="uid://bcv8wf4epwels" path="res://assets/asteroide4.png" id="1_lakxc"]
+
+[node name="M4" type="StaticBody2D"]
+light_mask = 4
+visibility_layer = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_lakxc")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+light_mask = 4
+visibility_layer = 4
+polygon = PackedVector2Array(-26, -15, -28, -22, -17, -26, -11, -33, -7, -26, 1, -18, 15, -15, 21, -15, 24, -3, 20, 11, 7, 18, 2, 21, 0, 28, -6, 28, -9, 18, -22, 13, -32, 12, -34, -4, -26, -9)

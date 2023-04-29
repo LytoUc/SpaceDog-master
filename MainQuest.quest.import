@@ -1,0 +1,14 @@
+[remap]
+
+importer="quest_importer"
+type="Resource"
+uid="uid://lyj6wwjwnvcv"
+path="res://.godot/imported/MainQuest.quest-14b11f435ffcbf76619037962d14710f.tres"
+
+[deps]
+
+source_file="res://MainQuest.quest"
+dest_files=["res://.godot/imported/MainQuest.quest-14b11f435ffcbf76619037962d14710f.tres"]
+
+[params]
+

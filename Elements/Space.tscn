@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dsed5hdputdq0"]
+
+[ext_resource type="PackedScene" uid="uid://biite8d05a6pg" path="res://Sun.tscn" id="2_ku5pu"]
+[ext_resource type="PackedScene" uid="uid://rrvygfb0b3kp" path="res://Laika.tscn" id="3_xv770"]
+
+[node name="Space" type="Node3D"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+
+[node name="Sun" parent="." instance=ExtResource("2_ku5pu")]
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("3_xv770")]
+transform = Transform3D(0.54, 0, 0, 0, 0.54, 0, 0, 0, 0.54, -0.333333, 3, -32)

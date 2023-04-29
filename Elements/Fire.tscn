@@ -1,0 +1,94 @@
+[gd_scene load_steps=9 format=3 uid="uid://cyh4me36jh77"]
+
+[ext_resource type="Script" path="res://Scripts/Fire.gd" id="1_4iuyg"]
+[ext_resource type="Texture2D" uid="uid://cotam2rhg0350" path="res://assets/fireExtinguisher.png" id="2_tkadq"]
+[ext_resource type="Texture2D" uid="uid://dt0umqkcoknj6" path="res://assets/Caja-Progreso.png" id="3_ygj53"]
+[ext_resource type="Texture2D" uid="uid://bn2lxqaqv8xgj" path="res://assets/Barra-Progreso.png" id="4_iey8w"]
+
+[sub_resource type="Animation" id="1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="2"]
+resource_name = "push"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 1, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_re0bs"]
+_data = {
+"RESET": SubResource("1"),
+"push": SubResource("2")
+}
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8w5gv"]
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 3.0
+particle_flag_disable_z = true
+gravity = Vector3(10, 0, 0)
+initial_velocity_min = 80.65
+initial_velocity_max = 104.84
+orbit_velocity_min = 4.0
+orbit_velocity_max = 5.0
+color = Color(0.909804, 0.909804, 0.909804, 1)
+hue_variation_min = 1.0
+hue_variation_max = 1.0
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_4iuyg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_tkadq")
+hframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "RESET"
+libraries = {
+"": SubResource("AnimationLibrary_re0bs")
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="ProgressBar" type="TextureProgressBar" parent="."]
+texture_filter = 1
+offset_left = -18.0
+offset_top = 14.0
+offset_right = 14.0
+offset_bottom = 46.0
+rotation = -1.5708
+scale = Vector2(0.5, 0.25)
+max_value = 3.0
+value = 2.0
+texture_under = ExtResource("3_ygj53")
+texture_progress = ExtResource("4_iey8w")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(12, -6)
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_8w5gv")
+lifetime = 4.0
+one_shot = true

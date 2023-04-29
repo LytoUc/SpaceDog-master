@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://57h5fuqlvkfc"]
+
+[ext_resource type="Script" path="res://Gravity3d.gd" id="1_r8ix4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4lin2"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_p1v63"]
+
+[node name="Laika" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0122032, 0.000134289)
+max_contacts_reported = 1
+contact_monitor = true
+script = ExtResource("1_r8ix4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+rotation_edit_mode = 1
+shape = SubResource("BoxShape3D_4lin2")
+
+[node name="capsula" type="Node3D" parent="."]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="capsula"]
+mesh = SubResource("BoxMesh_p1v63")

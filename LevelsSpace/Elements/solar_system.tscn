@@ -1,0 +1,159 @@
+[gd_scene load_steps=11 format=3 uid="uid://bik6de37ax3ie"]
+
+[ext_resource type="Script" path="res://LevelsSpace/Elements/solar_system.gd" id="1_nehcf"]
+[ext_resource type="Texture2D" uid="uid://qnhh25h2w3y4" path="res://assets/Sun.png" id="1_y1qmf"]
+[ext_resource type="Texture2D" uid="uid://d1qre77te8c8b" path="res://assets/PlanetaAnilloLava.png" id="2_80xti"]
+[ext_resource type="Texture2D" uid="uid://bj22l2ks1hio6" path="res://assets/PlanetaRocoso.png" id="3_do5p0"]
+
+[sub_resource type="Animation" id="Animation_f1x1u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_cit8j"]
+resource_name = "rotation"
+length = 4.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_apcop"]
+_data = {
+"RESET": SubResource("Animation_f1x1u"),
+"rotation": SubResource("Animation_cit8j")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uxg82"]
+radius = 51.4781
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f6dok"]
+radius = 84.1487
+
+[sub_resource type="Curve2D" id="Curve2D_5rc7d"]
+_data = {
+"points": PackedVector2Array(-129.356, -151.471, 129.356, 151.471, 165, -125, 53.8008, -24.5407, -53.8008, 24.5407, 142, 216, 42.4264, 82.0244, -42.4264, -82.0244, -236, 193, 0, 0, 0, 0, -268, 11.3333, -96.1665, 100.409, 96.1665, -100.409, -180, -162, 0, 0, 0, 0, 166, -125)
+}
+point_count = 6
+
+[node name="SolarSystem" type="Node2D"]
+position = Vector2(0, -102)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_nehcf")
+
+[node name="Sun" type="StaticBody2D" parent="."]
+scale = Vector2(2, 2)
+
+[node name="Sprite2D" type="Sprite2D" parent="Sun"]
+texture_filter = 1
+position = Vector2(1, -2)
+texture = ExtResource("1_y1qmf")
+hframes = 50
+frame = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sun"]
+autoplay = "rotation"
+libraries = {
+"": SubResource("AnimationLibrary_apcop")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sun"]
+position = Vector2(1, -1)
+shape = SubResource("CircleShape2D_uxg82")
+
+[node name="HeatWarning" type="Area2D" parent="Sun"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sun/HeatWarning"]
+shape = SubResource("CircleShape2D_f6dok")
+
+[node name="Jupyter" type="Area2D" parent="."]
+position = Vector2(-1248, -220)
+scale = Vector2(4, 4)
+
+[node name="Sprite2D" type="Sprite2D" parent="Jupyter"]
+texture_filter = 1
+position = Vector2(1, -2)
+texture = ExtResource("2_80xti")
+hframes = 50
+frame = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Jupyter"]
+autoplay = "rotation"
+libraries = {
+"": SubResource("AnimationLibrary_apcop")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Jupyter"]
+position = Vector2(3, 0)
+shape = SubResource("CircleShape2D_uxg82")
+
+[node name="PlanetRocky" type="Area2D" parent="."]
+position = Vector2(-2623.33, 261.667)
+scale = Vector2(10, 10)
+
+[node name="Sprite2D" type="Sprite2D" parent="PlanetRocky"]
+texture_filter = 1
+position = Vector2(1, -2)
+texture = ExtResource("3_do5p0")
+hframes = 50
+frame = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlanetRocky"]
+autoplay = "rotation"
+libraries = {
+"": SubResource("AnimationLibrary_apcop")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlanetRocky"]
+position = Vector2(1.33334, -2.00002)
+shape = SubResource("CircleShape2D_uxg82")
+
+[node name="Orbit1" type="Path2D" parent="."]
+position = Vector2(35, -18)
+scale = Vector2(5, 5)
+curve = SubResource("Curve2D_5rc7d")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Orbit1"]
+position = Vector2(165, -125)
+rotation = 0.863988
+scale = Vector2(5, 5)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Orbit1/PathFollow2D"]
+position = Vector2(-41.8917, 75.1082)
+rotation = -0.863988
+scale = Vector2(5, 5)
+remote_path = NodePath("../../../Jupyter")
+update_scale = false
+
+[node name="Orbit2" type="Path2D" parent="."]
+position = Vector2(100, -15)
+scale = Vector2(10, 10)
+curve = SubResource("Curve2D_5rc7d")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Orbit2"]
+position = Vector2(165, -125)
+rotation = 0.863988
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Orbit2/PathFollow2D"]
+position = Vector2(-167.915, 431.708)
+rotation = -0.863988
+remote_path = NodePath("../../../PlanetRocky")

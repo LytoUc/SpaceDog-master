@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://13dwcx53omo6"]
+
+[ext_resource type="PackedScene" uid="uid://57h5fuqlvkfc" path="res://Levels/Laika.tscn" id="1_0rma8"]
+[ext_resource type="PackedScene" uid="uid://1d6ldisl7txy" path="res://Elements3d/planet.tscn" id="2_je2fd"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Laika" parent="." instance=ExtResource("1_0rma8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.19569, 9.16053, 2.07561)
+rotation_edit_mode = 1
+mass = 4.0
+lock_rotation = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12.7542)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.987507, -0.157572, 0, 0.157572, 0.987507, 2, 4.1157, 18.5008)
+current = true
+
+[node name="Planet2" parent="." instance=ExtResource("2_je2fd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.17189, 1.27209, 0.810181)

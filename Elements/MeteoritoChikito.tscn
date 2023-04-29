@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bshegwn7hnidh"]
+
+[ext_resource type="Texture2D" uid="uid://c3c10wrsk8t5e" path="res://assets/1379223629.png" id="1_d55kl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5nkh8"]
+radius = 101.119
+
+[node name="Meteorito" type="StaticBody2D"]
+scale = Vector2(0.25, 0.25)
+collision_layer = 5
+collision_mask = 4
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("1_d55kl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5nkh8")

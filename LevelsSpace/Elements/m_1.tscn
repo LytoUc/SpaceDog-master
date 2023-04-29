@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://3j0tj5u3y8ec"]
+
+[ext_resource type="Texture2D" uid="uid://cc6ff2bhp2am" path="res://assets/asteroide1.png" id="1_liyd3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k4st8"]
+radius = 4.0
+
+[node name="M1" type="StaticBody2D"]
+light_mask = 4
+visibility_layer = 4
+
+[node name="MS1" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_liyd3")
+
+[node name="MC1" type="CollisionPolygon2D" parent="."]
+light_mask = 4
+visibility_layer = 4
+polygon = PackedVector2Array(-9, -33, -16, -28, -17, -18, -23, -11, -23, -6, -32, -2, -33, 12, -29, 15, -21, 12, -16, 9, -15, 3, -9, 3, -6, 8, -6, 14, -6, 23, -4, 28, 1, 32, 8, 34, 14, 38, 19, 36, 20, 33, 17, 31, 15, 24, 16, 17, 22, 11, 20, 3, 14, 0, 11, -4, 4, -8, -2, -11, -3, -15, 1, -22, 1, -29)
+
+[node name="C1" type="CollisionShape2D" parent="."]
+light_mask = 4
+visibility_layer = 4
+position = Vector2(18, -29)
+shape = SubResource("CircleShape2D_k4st8")
+
+[node name="C2" type="CollisionShape2D" parent="."]
+light_mask = 4
+visibility_layer = 4
+position = Vector2(36, 7)
+shape = SubResource("CircleShape2D_k4st8")

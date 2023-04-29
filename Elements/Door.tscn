@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cje7l85pb6vny"]
+
+[ext_resource type="Script" path="res://Scripts/Door.gd" id="1_j7mpb"]
+[ext_resource type="Texture2D" uid="uid://byjyof42upypr" path="res://assets/portal.png" id="2_b521i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_04bfm"]
+size = Vector2(41, 163)
+
+[node name="Door" type="Area2D"]
+script = ExtResource("1_j7mpb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(82, 4)
+shape = SubResource("RectangleShape2D_04bfm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("2_b521i")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

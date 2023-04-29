@@ -1,0 +1,63 @@
+[gd_scene load_steps=9 format=3 uid="uid://djdppwy3low41"]
+
+[ext_resource type="Script" path="res://Scripts/Peligros/redSlime.gd" id="1_0g2ki"]
+[ext_resource type="Texture2D" uid="uid://bjyj6walh4sp6" path="res://assets/Enemies/slime_red.png" id="1_ih6d8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6bw4"]
+atlas = ExtResource("1_ih6d8")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rj03i"]
+atlas = ExtResource("1_ih6d8")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m8dqk"]
+atlas = ExtResource("1_ih6d8")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_do3x8"]
+atlas = ExtResource("1_ih6d8")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6jxua"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a6bw4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rj03i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m8dqk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_do3x8")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 3.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_883mf"]
+size = Vector2(9, 6)
+
+[node name="redSlime" type="CharacterBody2D"]
+script = ExtResource("1_0g2ki")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_6jxua")
+animation = &"walk"
+autoplay = "walk"
+frame_progress = 0.314541
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 3
+visibility_layer = 3
+position = Vector2(0.5, 5)
+shape = SubResource("RectangleShape2D_883mf")
